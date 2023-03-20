@@ -22,12 +22,33 @@ class _DialogScanQRCodeState extends State<DialogScanQRCode> {
           children: [
             Text(code),
             SizedBox(height: 12),
-            Stack(alignment: Alignment.center, children: [
+            Stack(children: [
               _buildQRView(),
-              Container(
-                color: Colors.red,
-                width: double.infinity,
-                height: 1,
+              // horizontal line
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 300 / 2,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 50, right: 50),
+                  child: Container(
+                    height: 1,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              // vertical line
+              Positioned(
+                top: 0,
+                bottom: 0,
+                left: 140,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50, bottom: 50),
+                  child: Container(
+                    width: 1,
+                    color: Colors.green,
+                  ),
+                ),
               )
             ]),
             Container(
@@ -45,17 +66,17 @@ class _DialogScanQRCodeState extends State<DialogScanQRCode> {
   }
 
   SizedBox _buildQRView() => SizedBox(
-    height: 300,
-    child: QRView(
-      key: _qrKey,
-      onQRViewCreated: (QRViewController controller) {
-        controller.scannedDataStream.listen((scanData) {
-          controller.stopCamera();
-          setState(() {
-            code = scanData.code!;
-          });
-        });
-      },
-    ),
-  );
+        height: 300,
+        child: QRView(
+          key: _qrKey,
+          onQRViewCreated: (QRViewController controller) {
+            controller.scannedDataStream.listen((scanData) {
+              controller.stopCamera();
+              setState(() {
+                code = scanData.code!;
+              });
+            });
+          },
+        ),
+      );
 }

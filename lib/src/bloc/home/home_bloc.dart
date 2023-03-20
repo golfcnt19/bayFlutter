@@ -8,25 +8,19 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
+    // Fetch products
     on<HomeEventFetch>((event, emit) async {
       try {
-        emit(state.copyWith(
-          products: [],
-          status: FetchStatus.fetching,
-        ));
+        emit(state.copyWith(products: [], status: FetchStatus.fetching));
         await Future.delayed(Duration(seconds: 1));
         final result = await NetworkService().getProduct();
-
-        emit(state.copyWith(
-          products: result,
-          status: FetchStatus.success,
-        ));
+        emit(state.copyWith(products: result, status: FetchStatus.success));
       } catch (e) {
-        emit(state.copyWith(products: [] ,status: FetchStatus.failed));
+        emit(state.copyWith(products: [], status: FetchStatus.failed));
       }
     });
 
-    // load products
+    // toggle display mode between grid and list view
     on<HomeEventToggleDisplay>((event, emit) async {
       emit(state.copyWith(isGrid: !state.isGrid));
     });

@@ -66,45 +66,45 @@ class ProductItem extends StatelessWidget {
   }
 
   Expanded _buildInfo() => Expanded(
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            product.name,
-            style: (isGrid ?? false) ? TextStyle(fontSize: 14, fontWeight: FontWeight.normal) : TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Row(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextButton(
-                onPressed: onTapAtPrice,
-                child: Text(
-                  '฿${formatCurrency.format(product.price)}',
-                  style: TextStyle(
-                    fontSize: isGrid ?? false ? 15 : 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
               Text(
-                '${formatNumber.format(product.stock)} pieces',
-                style: TextStyle(
-                  fontSize: isGrid ?? false ? 15 : 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepOrangeAccent,
-                ),
+                product.name,
+                style: (isGrid ?? false) ? TextStyle(fontSize: 14, fontWeight: FontWeight.normal) : TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: onTapAtPrice,
+                    child: Text(
+                      '฿${formatCurrency.format(product.price)}',
+                      style: TextStyle(
+                        fontSize: isGrid ?? false ? 15 : 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '${formatNumber.format(product.stock)} pieces',
+                    style: TextStyle(
+                      fontSize: isGrid ?? false ? 15 : 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrangeAccent,
+                    ),
+                  ),
+                ],
+              )
             ],
-          )
-        ],
-      ),
-    ),
-  );
+          ),
+        ),
+      );
 
   Image _image(String image) {
     String imageUrl;
@@ -122,20 +122,20 @@ class ProductItem extends StatelessWidget {
   }
 
   Positioned _buildOutOfStock() => const Positioned(
-    top: 2,
-    right: 2,
-    child: Card(
-      color: Colors.amber,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        child: Text(
-          'out of stock',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 12,
+        top: 2,
+        right: 2,
+        child: Card(
+          color: Colors.amber,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Text(
+              'out of stock',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
           ),
         ),
-      ),
-    ),
-  );
+      );
 }

@@ -1,4 +1,5 @@
 import 'package:bay_flutter1/src/bloc/home/home_bloc.dart';
+import 'package:bay_flutter1/src/bloc/management/management_bloc.dart';
 import 'package:bay_flutter1/src/constants/network_api.dart';
 import 'package:bay_flutter1/src/pages/app_routes.dart';
 import 'package:bay_flutter1/src/pages/home/home_page.dart';
@@ -30,9 +31,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc());
     final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
+    final managementBloc = BlocProvider<ManagementBloc>(create: (context) => ManagementBloc());
 
     return MultiBlocProvider(
-      providers: [homeBloc, loginBloc],
+      providers: [
+        homeBloc,
+        loginBloc,
+        managementBloc,
+      ],
       child: MaterialApp(
         title: "App",
         navigatorKey: navigatorState,

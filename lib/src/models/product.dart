@@ -20,10 +20,10 @@ class Product {
   });
 
   final int? id;
-  final String name;
-  final String? image;
-  final int stock;
-  final int price;
+  String name;
+  String? image;
+  int stock;
+  int price;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
